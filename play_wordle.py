@@ -1,6 +1,9 @@
 import numpy as np
 
 class PlayWorldle(object):
+    """
+    Class for Wordle Helper.
+    """
     
     def __init__(self, all_words):
         print('<<< Welcome to a new Worldle! >>>')
