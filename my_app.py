@@ -5,7 +5,7 @@ import pandas as pd
 # Write a page title
 st.title('Wordle Helper')
 st.text(
-    'This app uses information theory to help you solve Wordle!\nType in the guessed word and the letters that are green or amber (blank if none).'
+    'This app uses information theory to help you solve Wordle!\nType in the guessed word and the letters that are green or amber (blank if none).\nHint: "alert" is a great guess to start with..'
     )
 
 if 'game_object' not in st.session_state:
@@ -31,13 +31,13 @@ if push_button:
     n_remaining = len(st.session_state['game_object'].remaining_words)
     st.write('Number of guesses:', st.session_state['game_object'].game_state)
     if n_remaining == 1:
-        remaining_output = ('CONGRATULATIONS! The only word left is {}!'
+        remaining_output = ('CONGRATULATIONS! The only word left is "{}"!'
                             .format(st.session_state['game_object'].remaining_words[0]))
     elif n_remaining == 0:
         remaining_output = ('There are no words left...something went wrong!')
     else:
         remaining_output = 'There are {} remaining words!'.format(n_remaining)
-        st.write('Try this word:       ', best_choices[0])
+        st.write('Try this word:       ', '"{}"'.format(best_choices[0]))
     st.write('', remaining_output)
 
 
