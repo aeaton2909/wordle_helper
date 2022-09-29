@@ -6,7 +6,7 @@ import pandas as pd
 st.title('Wordle Helper')
 para = ()
 st.text(
-    """This app uses information theory to help you solve Wordle!
+    """This app uses information theory to help you solve Wordle quickly!
 
     1) Guess a word in the Wordle app and type it in below
     2) Type in the letters that are GREEN
@@ -37,14 +37,18 @@ if push_button:
 
     n_remaining = len(st.session_state['game_object'].remaining_words)
     st.write('Number of guesses:', st.session_state['game_object'].game_state)
+    st.write('', st.session_state['game_object'].guesses)
     if n_remaining == 1:
-        remaining_output = ('CONGRATULATIONS! The only word left is "{}"!'
-                            .format(st.session_state['game_object'].remaining_words[0]))
+        st.success('Congratulations! The only word left is "{}".'.format(
+            st.session_state['game_object'].remaining_words[0]), icon="✅"
+            )
         chart_data = pd.Series(st.session_state['game_object'].remaining_words_log)
         st.bar_chart(chart_data.rename(index='Remaining words'))
     elif n_remaining == 0:
-        remaining_output = ('There are no words left...something went wrong!')
+        st.error('There are no words left...did you type correctly?', icon="🚨")
     else:
         remaining_output = 'There are {} remaining words!'.format(n_remaining)
-        st.write('Try this word:       ', '"{}"'.format(best_choices[0]))
-    st.write('', remaining_output)
+        st.metric(label="Try this word:", value='{}'.format(best_choices[0]))
+        st.write('', remaining_output)
+    
+
