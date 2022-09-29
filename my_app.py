@@ -7,8 +7,12 @@ st.title('Wordle Helper')
 para = ()
 st.text(
     """This app uses information theory to help you solve Wordle!
-Tell it your guessed word and which letters are green or amber (leave blank if none).
-The app tells you which word to try next.
+
+    1) Guess a word in the Wordle app and type it in below
+    2) Type in the letters that are GREEN
+    3) Type in the letters that are AMBER
+    4) Find the best word to guess next and repeat!
+
 Hint: "alert" is a great guess to start with.."""
     )
 
@@ -20,10 +24,10 @@ if 'game_object' not in st.session_state:
     # Intialise object with words
     st.session_state['game_object'] = PlayWorldle(wordle_words)
 
-guessed_word = st.text_input('Word you guessed:', 'alert')
+guessed_word = st.text_input('Word you guessed in Wordle:', 'alert')
 green_chars = st.text_input('Letters that are GREEN:', )
 amber_chars = st.text_input('Letters that are AMBER:', )
-push_button = st.button('Enter')
+push_button = st.button('Find next word!')
 
 if push_button:
     st.session_state['game_object'].enter_guess(guessed_word.lower(), 
