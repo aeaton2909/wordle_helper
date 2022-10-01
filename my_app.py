@@ -25,8 +25,8 @@ if 'game_object' not in st.session_state:
     st.session_state['game_object'] = PlayWorldle(wordle_words)
 
 guessed_word = st.text_input('Word you guessed in Wordle:', 'alert')
-green_chars = st.text_input('Letters that are GREEN:', )
-amber_chars = st.text_input('Letters that are AMBER:', )
+green_chars = st.text_input('Letters in {} that are GREEN:'.format(guessed_word), )
+amber_chars = st.text_input('Letters in {} that are AMBER:'.format(guessed_word), )
 push_button = st.button('Find next word!')
 
 if push_button:
@@ -50,5 +50,3 @@ if push_button:
         remaining_output = 'There are {} remaining words!'.format(n_remaining)
         st.metric(label="Try this word:", value='{}'.format(best_choices[0]))
         st.write('', remaining_output)
-    
-
